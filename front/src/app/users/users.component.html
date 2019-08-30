@@ -1,5 +1,24 @@
 <table class="table table-striped">
-
+    <thead>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{ col.title }}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of list$ | async">
+            <td *ngFor="let col of columns">
+                <span *ngIf="col.key !== 'name'">
+                    {{ user[col.key] }}
+                </span>
+                <span *ngIf="col.key === 'name'">
+                    {{ getNamePart(user.name, 'first') }} 
+                    {{ getNamePart(user.name, 'last') }}
+                </span>
+            </td>
+        </tr>
+    </tbody>
 </table>
 
 {{ list$ | async | json }}

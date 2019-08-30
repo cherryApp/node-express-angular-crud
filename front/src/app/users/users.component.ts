@@ -11,6 +11,18 @@ import { User } from '../model/user';
 export class UsersComponent implements OnInit {
 
   list$: Observable<User[]> = this.userService.get();
+  columns: {key: string, title: string}[] = [
+    {key: 'id', title: 'ID'},
+    { key: 'isActive', title: 'Active'},
+    // { key: 'balance', title: 'Balance'},
+    { key: 'age', title: 'Age'},
+    // { key: 'eyeColor', title: 'E.color'},
+    { key: 'name', title: 'Name'},
+    { key: 'company', title: 'Company'},
+    { key: 'email', title: 'Email'},
+    // { key: 'phone', title: 'Phone'},
+    { key: 'address', title: 'Address'}
+  ];
 
   constructor(
     private userService: UserService
@@ -21,6 +33,10 @@ export class UsersComponent implements OnInit {
       users => console.log(users),
       err => console.error(err)
     );
+  }
+
+  getNamePart(name, key): string {
+    return name[key];
   }
 
 }
