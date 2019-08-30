@@ -38,8 +38,8 @@ router.put('/:entity/:id', async (req, res, next) => {
 // Example: /users/5 = delete an user;
 router.delete('/:entity/:id', async (req, res, next) => {
     const db = new DB(req.params.entity);
-    let deleted = await db.delete(id);
-    res.json(deleted);
+    let deleted = await db.delete(req.params.id);
+    res.send(deleted);
 });
 
 module.exports = router;

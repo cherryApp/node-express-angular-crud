@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../service/user.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { User } from '../model/user';
 
 @Component({
@@ -10,7 +10,7 @@ import { User } from '../model/user';
 })
 export class UsersComponent implements OnInit {
 
-  list$: Observable<User[]> = this.userService.get();
+  list$: Subject<User[]> = this.userService.list$;
   columns: {key: string, title: string}[] = [
     {key: 'id', title: 'ID'},
     { key: 'isActive', title: 'Active'},
@@ -29,14 +29,17 @@ export class UsersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userService.get().subscribe(
-      users => console.log(users),
-      err => console.error(err)
-    );
+    this.userService.get();
   }
 
   getNamePart(name, key): string {
     return name[key];
+  }
+
+  delete(user: User) {
+    this.userService.delete(user).subscribe(
+      response => console.log(response)
+    );
   }
 
 }

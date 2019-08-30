@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { User } from '../model/user';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { TagPlaceholder } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +11,16 @@ import { Observable } from 'rxjs';
 export class UserService {
 
   apiUrl: string = 'http://localhost:3000/api/users';
+  list$: Subject<any> = new Subject();
 
   constructor(
     private http: HttpClient
   ) { }
 
-  get(id: number = 0): Observable<User[]> {
-    return this.http.get<User[]>(`${this.apiUrl}/${id}`);
+  get(id: number = 0) {
+    this.http.get<User[]>(`${this.apiUrl}/${id}`).forEach(
+      users => this.list$.next(users)
+    );
   }
   
   create(user: User): Observable<User> {
@@ -27,6 +32,10 @@ export class UserService {
   }
 
   delete(user: User): Observable<User> {
-    return this.http.delete<User>(`${this.apiUrl}/${user.id}`);
+    return this.http.delete<User>(`${this.apiUrl}/${user.id}`).pipe(
+      tap( data => {
+        this.get();
+      }
+    ));
   }
 }

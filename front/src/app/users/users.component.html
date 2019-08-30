@@ -4,6 +4,7 @@
             <th *ngFor="let col of columns">
                 {{ col.title }}
             </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -17,8 +18,11 @@
                     {{ getNamePart(user.name, 'last') }}
                 </span>
             </td>
+            <td>
+                <button (click)="delete(user)" class="btn btn-danger">
+                    del.
+                </button>
+            </td>
         </tr>
     </tbody>
 </table>
-
-{{ list$ | async | json }}
