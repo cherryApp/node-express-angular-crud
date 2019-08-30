@@ -77,6 +77,21 @@ module.exports = class DB {
     await this.write(dataArray);
     return item;
   }
+  
+  async delete(id) {
+    let dataArray = await this.getJsonArray();
+    let deleteIndex = 0;
+    for (let k in dataArray) {
+      if (dataArray[k].id == id) {
+        deleteIndex = k;
+        break;
+      }
+    }
+    
+    dataArray.splice(deleteIndex, 1);
+    await this.write(dataArray);
+    return id;
+  }
 
   async getJsonArray() {
     let data = await FsUtil.readFile(this.jsonFilePath);
