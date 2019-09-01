@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../service/user.service';
 import { Observable, Subject } from 'rxjs';
 import { User } from '../model/user';
+import { ConfigService } from '../service/config.service';
 
 @Component({
   selector: 'app-users',
@@ -11,22 +12,14 @@ import { User } from '../model/user';
 export class UsersComponent implements OnInit {
 
   list$: Subject<User[]> = this.userService.list$;
-  columns: {key: string, title: string}[] = [
-    {key: 'id', title: 'ID'},
-    { key: 'isActive', title: 'Active'},
-    // { key: 'balance', title: 'Balance'},
-    { key: 'age', title: 'Age'},
-    // { key: 'eyeColor', title: 'E.color'},
-    { key: 'name', title: 'Name'},
-    { key: 'company', title: 'Company'},
-    { key: 'email', title: 'Email'},
-    // { key: 'phone', title: 'Phone'},
-    { key: 'address', title: 'Address'}
-  ];
+  columns: any[] = [];
 
   constructor(
-    private userService: UserService
-  ) { }
+    private userService: UserService,
+    private config: ConfigService
+  ) {
+    this.columns = this.config.userColumns;
+  }
 
   ngOnInit() {
     this.userService.get();
