@@ -18,15 +18,19 @@ export class UserService {
   ) { }
 
   get(id: number = 0) {
-    this.http.get<User[]>(`${this.apiUrl}/${id}`).forEach(
-      users => this.list$.next(users)
-    );
+    if (!id) {
+      return this.http.get<User[]>(`${this.apiUrl}`).forEach(
+        users => this.list$.next(users)
+      );
+    } else {
+      return this.http.get<User>(`${this.apiUrl}/${id}`);
+    }
   }
-  
+
   create(user: User): Observable<User> {
     return this.http.post<User>(this.apiUrl, user);
   }
-  
+
   update(user: User): Observable<User> {
     return this.http.put<User>(`${this.apiUrl}/${user.id}`, user);
   }

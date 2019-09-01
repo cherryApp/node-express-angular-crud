@@ -1,28 +1,39 @@
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th *ngFor="let col of columns">
-                {{ col.title }}
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let user of list$ | async">
-            <td *ngFor="let col of columns">
-                <span *ngIf="col.key !== 'name'">
-                    {{ user[col.key] }}
-                </span>
-                <span *ngIf="col.key === 'name'">
-                    {{ getNamePart(user.name, 'first') }} 
-                    {{ getNamePart(user.name, 'last') }}
-                </span>
-            </td>
-            <td>
-                <button (click)="delete(user)" class="btn btn-danger">
-                    del.
-                </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="row">
+  <div class="col-12">
+    <a class="btn btn-block btn-success" routerLink="/users/create">
+      Create new User
+    </a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{ col.title }}
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of list$ | async">
+                <td *ngFor="let col of columns">
+                    <span *ngIf="!col.subKey">
+                        {{ user[col.key] }}
+                    </span>
+                    <span *ngIf="col.subKey">
+                        {{ user[col.key][col.subKey] }}
+                    </span>
+                </td>
+                <td>
+                    <button (click)="delete(user)" class="btn btn-danger">
+                        del.
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+</div>

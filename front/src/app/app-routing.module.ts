@@ -2,16 +2,21 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { IndexComponent } from './page/index/index.component';
 import { UsersComponent } from './users/users.component';
+import { CreateUserComponent } from './page/create-user/create-user.component';
 
 
 const routes: Routes = [
   {
-    path: '', 
+    path: '',
     component: IndexComponent
   },
   {
-    path: 'users', 
+    path: 'users',
     component: UsersComponent
+  },
+  {
+    path: 'users/create',
+    component: CreateUserComponent
   },
   {
     path: '**',

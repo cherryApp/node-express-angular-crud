@@ -1,0 +1,9 @@
+<h1>Create new User</h1>
+<div *ngFor="let col of columns" class="form-group">
+    <label for="">{{ col.title }}</label>
+    <input *ngIf="!col.subKey" [(ngModel)]="user[col.key]" type="text" class="form-control">
+    <input *ngIf="col.subKey" [(ngModel)]="createSubKey(user)[col.subKey]" type="text" class="form-control">
+</div>
+<button (click)="create(user)" class="btn btn-block btn-primary">
+  Create
+</button>
