@@ -1,5 +1,4 @@
-[
-    {
+[{
         "id": 2,
         "guid": "05ca6da4-32ab-41b8-8433-42139fd82c9c",
         "isActive": true,
@@ -1547,37 +1546,14 @@
         "address": "223 Hausman Street, Savannah, Kansas, 5780"
     },
     {
-        "id": 96,
-        "guid": "de1273d5-89e6-4d80-828b-b4289d1bdd7e",
-        "isActive": false,
-        "balance": "$3,006.51",
-        "picture": "http://placehold.it/32x32",
-        "age": 22,
-        "eyeColor": "blue",
         "name": {
-            "first": "Wolfe",
-            "last": "Chen"
+            "first": "sdf",
+            "last": "sdfds"
         },
-        "company": "PIVITOL",
-        "email": "wolfe.chen@pivitol.info",
-        "phone": "+1 (943) 572-3483",
-        "address": "196 Grace Court, Bethpage, Maine, 8873"
-    },
-    {
-        "id": 100,
-        "guid": "6f33a8c2-3589-4e36-bd83-8328f6d3e97b",
-        "isActive": true,
-        "balance": "$3,852.25",
-        "picture": "http://placehold.it/32x32",
-        "age": 30,
-        "eyeColor": "blue",
-        "name": {
-            "first": "Short",
-            "last": "Castillo"
-        },
-        "company": "INRT",
-        "email": "short.castillo@inrt.org",
-        "phone": "+1 (889) 563-2324",
-        "address": "780 Crescent Street, Wyano, Texas, 3299"
+        "age": "33",
+        "company": "sdf",
+        "email": "sdfs",
+        "address": "sdfds",
+        "id": 96
     }
 ]

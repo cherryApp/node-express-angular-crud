@@ -17,7 +17,8 @@ export class CreateUserComponent implements OnInit {
 
   constructor(
     private config: ConfigService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
     this.columns = this.config.userColumns;
   }
@@ -26,9 +27,13 @@ export class CreateUserComponent implements OnInit {
     //
   }
 
-  create(user: User) {
+  create(user: any) {
+    user.name = {
+      first: user.first,
+      last: user.last
+    };
     this.userService.create(user).forEach(
-      response => console.log(response)
+      response => this.router.navigateByUrl("/users")
     );
   }
 
